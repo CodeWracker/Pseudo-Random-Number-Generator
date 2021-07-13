@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 import random 
 
 from sha256alg.RandomSHA256 import rand_sha
@@ -13,7 +12,7 @@ def python_random():
 
 if __name__ == "__main__":
     test = input("Which  method do you want to visualize?\n1 - SHA256\n2 - Python random()\nSelect: ")
-    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 Noise Generator\n3 - Print Table\n4 - Frequency Analizer\nSelect: ")
+    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 Noise Generator\n3 - Print Table\nSelect: ")
     algs = [rand_sha,python_random]
     randomgen = algs[int(test)-1]
     print("Testing - " + test_type)
@@ -32,13 +31,17 @@ if __name__ == "__main__":
             print(str(aux)+" iterations without repeat")
     if test_type == "2":
         res = []
-        x,y = [480,720]
+        x,y = (720,480)
         for i in tqdm(range(x*y)):
-            gen = randomgen()%255
+            gen = randomgen()%255 + 1
             res.append(gen)
-        img = np.array(res).reshape(x,y)
+        img = np.array(res).reshape(y,x)
+        
+        px = 1/plt.rcParams['figure.dpi']  # pixel in inches
+        plt.figure(figsize=(x*px, y*px))
         plt.imshow(img,cmap='gray')
         plt.show()
+
     if test_type == "3":
         numbers = []
         for i in tqdm(range(100)):
@@ -57,15 +60,14 @@ if __name__ == "__main__":
                 line = line + "| "+num+" "
             print(line)
         print("\n\n\n\n")
-        
-    if test_type == "4":
+    if test_type == "4": # dava errado antes pq eu colocava pra fazer o modulo de um numero divisivel por 2, ai ficava bem ruim msm...
         res = []
         x = []
-        for i in tqdm(range(10000)):
+        for i in tqdm(range(32113)):
             res.append(0)
             x.append(i)
         for i in tqdm(range(100000)):
-            res[int(randomgen()%10000)]+=1
+            res[int(randomgen()%32113)]+=1
         
         #print(res)
         plt.bar(x,res)
