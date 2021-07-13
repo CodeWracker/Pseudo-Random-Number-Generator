@@ -32,10 +32,11 @@ if __name__ == "__main__":
             print(str(aux)+" iterations without repeat")
     if test_type == "2":
         res = []
-        for i in tqdm(range(720*480)):
+        x,y = [480,720]
+        for i in tqdm(range(x*y)):
             gen = randomgen()%255
             res.append(gen)
-        img = np.array(res).reshape(480,720)
+        img = np.array(res).reshape(x,y)
         plt.imshow(img,cmap='gray')
         plt.show()
     if test_type == "3":
