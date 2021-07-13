@@ -13,21 +13,23 @@ def python_random():
 
 if __name__ == "__main__":
     test = input("Which  method do you want to visualize?\n1 - SHA256\n2 - Python random()\nSelect: ")
-    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 Noise Generator\n3 - Print Table\nSelect: ")
+    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 Noise Generator\n3 - Print Table\n4 - Frequency Analizer\nSelect: ")
     algs = [rand_sha,python_random]
     randomgen = algs[int(test)-1]
-    print("Testing SHA256 - " + test_type)
+    print("Testing - " + test_type)
 
     if test_type == "1":
-        aux = None  
-        res = []
-        for i in tqdm(range(1000000)):
-            aux = i
-            gen = randomgen()
-            if gen in res :
-                break
-            res.append(gen)
-        print(str(aux)+" iterations without repeat")
+        tst_n = int(input("How many? "))
+        for i in range(tst_n):
+            aux = None  
+            res = []
+            for j in tqdm(range(1000000)):
+                aux = j
+                gen = randomgen()
+                if gen in res :
+                    break
+                res.append(gen)
+            print(str(aux)+" iterations without repeat")
     if test_type == "2":
         res = []
         for i in tqdm(range(720*480)):
@@ -54,3 +56,16 @@ if __name__ == "__main__":
                 line = line + "| "+num+" "
             print(line)
         print("\n\n\n\n")
+        
+    if test_type == "4":
+        res = []
+        x = []
+        for i in tqdm(range(10000)):
+            res.append(0)
+            x.append(i)
+        for i in tqdm(range(100000)):
+            res[int(randomgen()%10000)]+=1
+        
+        #print(res)
+        plt.bar(x,res)
+        plt.show()

@@ -38,4 +38,8 @@ def rand_sha():
         result = hexstr_to_dec(l)*sum + result/sum
         #print('parcial result: ',result)
         #print()
-    return int(result*1000000) * seed**5
+    return int(result*10000 * seed**2)
+
+if __name__ == "__main__":
+    for i in range(20):
+        print(rand_sha()%1000000000)
