@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import random 
 
 from sha256alg.RandomSHA256 import rand_sha
-
+from midsquarealg.MidSquare import mid_square
 
 from tqdm import tqdm
 
@@ -11,9 +11,9 @@ def python_random():
     return random.randint(0,100000000)
 
 if __name__ == "__main__":
-    test = input("Which  method do you want to visualize?\n1 - SHA256\n2 - Python random()\nSelect: ")
-    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 Noise Generator\n3 - Print Table\nSelect: ")
-    algs = [rand_sha,python_random]
+    test = input("Which  method do you want to visualize?\n1 - SHA256\n2 - Python random()\n3 - Mid Square\nSelect: ")
+    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 - Noise Generator\n3 - Print Table\nSelect: ")
+    algs = [rand_sha,python_random,mid_square]
     randomgen = algs[int(test)-1]
     print("Testing - " + test_type)
 
@@ -31,7 +31,7 @@ if __name__ == "__main__":
             print(str(aux)+" iterations without repeat")
     if test_type == "2":
         res = []
-        x,y = (1920,1080)
+        x,y = (720,480)
         for i in tqdm(range(x*y)):
             gen = randomgen()%255 + 1
             res.append(gen)
