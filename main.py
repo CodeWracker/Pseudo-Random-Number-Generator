@@ -31,7 +31,7 @@ if __name__ == "__main__":
             print(str(aux)+" iterations without repeat")
     if test_type == "2":
         res = []
-        x,y = (720,480)
+        x,y = (1920,1080)
         for i in tqdm(range(x*y)):
             gen = randomgen()%255 + 1
             res.append(gen)
