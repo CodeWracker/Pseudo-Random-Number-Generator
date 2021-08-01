@@ -12,7 +12,7 @@ def python_random():
 
 if __name__ == "__main__":
     test = input("Which  method do you want to visualize?\n1 - SHA256\n2 - Python random()\n3 - Mid Square\nSelect: ")
-    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 - Noise Generator\n3 - Print Table\nSelect: ")
+    test_type = input("Which test type do you want to do?\n1 - Test Until Repeat\n2 - Noise Generator\n3 - Print Table\n4 - Test frequency\nSelect: ")
     algs = [rand_sha,python_random,mid_square]
     randomgen = algs[int(test)-1]
     print("Testing - " + test_type)
@@ -63,11 +63,11 @@ if __name__ == "__main__":
     if test_type == "4": # dava errado antes pq eu colocava pra fazer o modulo de um numero divisivel por 2, ai ficava bem ruim msm...
         res = []
         x = []
-        for i in tqdm(range(32113)):
+        for i in tqdm(range(255)):
             res.append(0)
             x.append(i)
-        for i in tqdm(range(100000)):
-            res[int(randomgen()%32113)]+=1
+        for i in tqdm(range(255*10)):
+            res[int(randomgen()%255)]+=1
         
         #print(res)
         plt.bar(x,res)
